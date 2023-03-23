@@ -8,10 +8,10 @@ import java.util.List;
 
 public class Session {
 
-    WordGenerator wordGenerator = new WordGenerator();
+    private final WordGenerator wordGenerator = new WordGenerator();
 
-    Printer printer = new Printer();
-    UserInput userInput = new UserInput();
+    private final Printer printer = new Printer();
+    private final UserInput userInput = new UserInput();
 
     public Completion playGame() {
         List<Character> randomWordCharacters = wordGenerator.getRandomWord();
@@ -20,7 +20,7 @@ public class Session {
         int tipCount = 0;
         do {
             char userTip = userInput.getTip();
-            if (userTip == Constants.getUserExit()) {
+            if (userTip == Constants.USER_EXIT) {
                 return Completion.ABRUPT_QUIT;
             }
             if (randomWordCharacters.contains(userTip)) {
@@ -33,7 +33,7 @@ public class Session {
                 printer.printTextWithNewLine("Kitaláltad, gratulálok!");
                 return Completion.NORMAL_END;
             }
-            if (tipCount == Constants.getMaxNumberOfTips()) {
+            if (tipCount == Constants.MAX_NUMBER_OF_TIPS) {
                 printer.printTextWithNewLine("Ez most sajnos nem sikerült, próbáld újra!");
                 return Completion.NORMAL_END;
             }

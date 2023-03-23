@@ -6,8 +6,8 @@ import printer.Printer;
 import userinput.UserInput;
 
 public class Starter {
-    Printer printer = new Printer();
-    UserInput userInput = new UserInput();
+    private final Printer printer = new Printer();
+   private final UserInput userInput = new UserInput();
 
 
     public void startGame() {

@@ -1,26 +1,15 @@
 package game;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class WordGenerator {
 
-    private static final List<String> fileData;
-
-    static {
-        try {
-            fileData = Files.readAllLines(Paths.get("Words.txt"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public List<Character> getRandomWord() {
         Random random = new Random();
+        List<String> fileData = FileReader.readFile();
         int randomNumber;
         do {
             randomNumber = random.nextInt(0, fileData.size());
@@ -33,7 +22,7 @@ public class WordGenerator {
     }
 
     private boolean isWordLengthCorrect(String randomWord) {
-        return (randomWord.length() <= Constants.getMaxNumberOfLetters() - 1);
+        return (randomWord.length() <= Constants.MAX_NUMBER_OF_LETTERS - 1);
     }
 
 
